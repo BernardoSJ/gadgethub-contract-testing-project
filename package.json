@@ -2,7 +2,10 @@
   "name": "gadgethub-contract-testing-project",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "specmatic:stub": "java -jar ./specmatic/specmatic.jar stub ./provider-api/openapi/gadgets.yaml --host localhost --port 9000"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

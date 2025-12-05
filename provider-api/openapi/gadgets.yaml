@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: GadgetHub API
+  version: 1.0.0
+  description: API example to practice contract testing with Specmatic + Playwright.
+
+servers:
+  - url: http://localhost:9000
+
+paths:
+  /gadgets:
+    get:
+      summary: Get all gadgets list
+      responses:
+        '200':
+          description: Gadgets list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gadget'
+
+    post:
+      summary: Create new gadget
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GadgetCreate'
+      responses:
+        '201':
+          description: Gadget created correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gadget'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /gadgets/{id}:
+    get:
+      summary: Get gadget details by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Gadget ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Gadget found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gadget'
+        '404':
+          description: Gadget not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Gadget:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Smartphone
+        description:
+          type: string
+          example: High-end phone with OLED display.
+
+    GadgetCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Laptop
+        description:
+          type: string
+          example: Ultrabook with 16GB RAM.
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: Resource not found.
