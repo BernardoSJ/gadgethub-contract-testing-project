@@ -1,0 +1,7 @@
+{
+  "http-request": { "method": "GET", "path": "/gadgets" },
+  "http-response": {
+    "status": 200,
+    "body": []
+  }
+}

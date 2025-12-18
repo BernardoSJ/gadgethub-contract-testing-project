@@ -1,0 +1,7 @@
+{
+  "http-request": { "method": "GET", "path": "/gadgets/999999" },
+  "http-response": {
+    "status": 404,
+    "body": { "message": "Gadget not found" }
+  }
+}
