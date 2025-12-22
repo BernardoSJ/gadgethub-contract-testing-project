@@ -59,6 +59,7 @@ paths:
           description: Gadget ID
           schema:
             type: integer
+            enum: [1, 2]
       responses:
         '200':
           description: Gadget found

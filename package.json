@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "specmatic:stub": "java -jar ./specmatic/specmatic.jar stub ./provider-api/openapi/gadgets.yaml --host localhost --port 9000"
+    "specmatic:stub": "java -jar ./specmatic/specmatic.jar stub ./provider-api/openapi/gadgets.yaml --host localhost --port 9000",
+    "provider:install": "cd provider-api/app && npm install",
+    "provider:start": "cd provider-api/app && npm run start",
+    "specmatic:verify": "java -jar ./specmatic/specmatic.jar test ./provider-api/openapi/gadgets.yaml --testBaseURL=http://localhost:9001"
   },
   "keywords": [],
   "author": "",
