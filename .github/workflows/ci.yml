@@ -1,0 +1,41 @@
+name: Contract Testing CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install provider deps
+        run: npm run provider:install
+
+      - name: Start provider
+        run: |
+          nohup npm run provider:start &
+          sleep 2
+
+      - name: Provider verification (Specmatic)
+        run: npm run specmatic:verify
+
+      - name: Start Specmatic stub
+        run: |
+          nohup npm run specmatic:stub &
+          sleep 2
+
+      - name: Consumer contract tests (Playwright)
+        run: npx playwright test
