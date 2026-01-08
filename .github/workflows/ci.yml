@@ -26,11 +26,23 @@ jobs:
 
       - name: Start provider
         run: |
-          nohup npm run provider:start &
-          sleep 2
+          npm run provider:start &
+          echo $! > provider.pid
+          # espera hasta que responda (ajusta endpoint si quieres)
+          for i in {1..30}; do
+            curl -sSf http://localhost:9001/gadgets >/dev/null && break
+            sleep 1
+          done
 
       - name: Provider verification (Specmatic)
         run: npm run specmatic:verify
+
+      - name: Stop provider
+        if: always()
+        run: |
+          if [ -f provider.pid ]; then
+            kill $(cat provider.pid) || true
+          fi
 
       - name: Consumer contract tests (Playwright)
         run: npm run test:all

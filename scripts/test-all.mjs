@@ -37,4 +37,5 @@ try {
   await run("npm", ["run", "test:contracts"]);
 } finally {
   stub.kill("SIGINT");
+  setTimeout(() => stub.kill("SIGKILL"), 2000).unref();
 }
