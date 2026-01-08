@@ -32,10 +32,5 @@ jobs:
       - name: Provider verification (Specmatic)
         run: npm run specmatic:verify
 
-      - name: Start Specmatic stub
-        run: |
-          nohup npm run specmatic:stub &
-          sleep 2
-
       - name: Consumer contract tests (Playwright)
-        run: npx playwright test
+        run: npm run test:all

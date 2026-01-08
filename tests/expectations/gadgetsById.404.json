@@ -1,5 +1,6 @@
 {
-  "http-request": { "method": "GET", "path": "/gadgets/999999" },
+  "http-stub-id": "gadgets-404",
+  "http-request": { "method": "GET", "path": "/gadgets/1" },
   "http-response": {
     "status": 404,
     "body": { "message": "Gadget not found" }

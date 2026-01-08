@@ -1,4 +1,5 @@
 {
+  "http-stub-id": "gadgets-empty",
   "http-request": { "method": "GET", "path": "/gadgets" },
   "http-response": {
     "status": 200,

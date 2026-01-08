@@ -7,7 +7,10 @@
     "specmatic:stub": "java -jar ./specmatic/specmatic.jar stub ./provider-api/openapi/gadgets.yaml --host localhost --port 9000",
     "provider:install": "cd provider-api/app && npm install",
     "provider:start": "cd provider-api/app && npm run start",
-    "specmatic:verify": "java -jar ./specmatic/specmatic.jar test ./provider-api/openapi/gadgets.yaml --testBaseURL=http://localhost:9001"
+    "specmatic:verify": "java -jar ./specmatic/specmatic.jar test ./provider-api/openapi/gadgets.yaml --testBaseURL=http://localhost:9001",
+    "stub": "npm run specmatic:stub",
+    "test:contracts": "npx playwright test tests/contracts --project=chromium",
+    "test:all": "node scripts/test-all.mjs"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1",
-    "specmatic": "^2.33.0"
+    "specmatic": "^2.33.0",
+    "start-server-and-test": "^2.1.3"
   }
 }
